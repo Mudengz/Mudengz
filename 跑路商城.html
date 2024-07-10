@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跑路科技商城</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f9f9f9; /* 更细腻的背景色 */
+    }
+
+    header {
+      background-color: #2196F3; /* 现代感的蓝色头部背景 */
+      color: #fff;
+      padding: 25px;
+      border-bottom: 2px solid #ddd; /* 底部边框更细腻 */
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: bold; /* 标题更粗 */
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #4CAF50;
+    }
+
+    nav ul li {
+      float: left;
+    }
+
+    nav ul li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 18px 20px; /* 导航链接内边距增加 */
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500; /* 字体加粗一点 */
+      border-bottom: 2px solid transparent; /* 底部透明边框，悬停时显示 */
+    }
+
+    nav ul li a:hover {
+      background-color: #111;
+      border-bottom: 2px solid #fff; /* 悬停时底部白色边框 */
+    }
+
+    main {
+      padding: 25px;
+    }
+
+ .product {
+      border: 1.5px solid #999; /* 产品边框更细腻 */
+      padding: 15px;
+      margin: 15px;
+    }
+
+ .product img {
+      width: 120px;
+      height: 120px;
+    }
+
+ .product h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #333;
+      font-weight: bold; /* 产品标题加粗 */
+    }
+
+ .product p {
+      margin: 8px 0;
+      font-size: 18px;
+      color: #555;
+    }
+
+ .cart {
+      background-color: #ECEFF1;
+      padding: 15px;
+      margin-top: 25px;
+      border: 1.5px solid #bbb; /* 购物车边框更细腻 */
+    }
+
+ .cart h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+      font-weight: bold; /* 购物车标题加粗 */
+    }
+
+    button {
+      background-color: #009688;
+      color: white;
+      border: none;
+      padding: 12px 25px; /* 按钮内边距增加 */
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 8px; /* 按钮圆角更大 */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 按钮阴影更明显 */
+    }
+
+    button:hover {
+      background-color: #00796B;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 悬停时阴影加深 */
+    }
+
+    /* 优化数量增减和删除按钮的样式 */
+ .quantity-control button {
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+      background-color: #e0e0e0;
+      color: #555;
+      border: 1.5px solid #999; /* 边框更细腻 */
+      cursor: pointer;
+    }
+
+ .quantity-control button:hover {
+      background-color: #bdbdbd;
+    }
+
+ .remove-button {
+      width: auto;  /* 宽度自适应内容 */
+      padding: 5px 10px;  /* 内边距调整 */
+      font-size: 18px;
+      background-color: #f44336;
+      color: #fff;
+      border: 1.5px solid #d32f2f; /* 边框更细腻 */
+      cursor: pointer;
+    }
+
+ .remove-button:hover {
+      background-color: #d32f2f;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 悬停时阴影加深 */
+    }
+
+    footer {
+      background-color: #37474F;
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      font-size: 18px;
+      border-top: 2px solid #555; /* 顶部边框更细腻 */
+    }
+
+    /* 优化后的悬浮窗样式 */
+ .floating-announcement {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 350px;
+      background-color: #FFF9C4;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* 悬浮窗阴影加深 */
+      padding: 15px;
+      z-index: 9999;
+      text-align: center;
+      border-radius: 15px;
+    }
+
+    /* 在线客服样式 */
+ .online-customer-service {
+      color: #009688;
+      font-weight: bold;
+      font-size: 20px; /* 客服文字增大 */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>跑路科技</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">首页</a></li>
+      <li><a href="#">功能介绍</a></li>
+      <li><a href="#">使用帮助</a></li>
+      <li><a href="#" onclick="redirectToOrderQuery()">订单查询</a></li> <!-- 为订单查询添加点击事件 -->
+    </ul>
+  </nav>
+  <main>
+    <div class="product">
+      <img src="product.jpg" alt="永久套餐">
+      <h3>永久套餐</h3>
+      <p>享受永久使用权限，包括持续的软件更新和优质售后支持。无论未来如何变化，您都无需担忧服务中断。</p>
+      <p>价格：$760</p>
+      <button onclick="addToCart(this, '永久套餐', 760)">加入购物车</button>
+    </div>
+    <div class="product">
+      <img src="product.jpg" alt="季度套餐">
+      <h3>季度套餐</h3>
+      <p>在一个季度内畅用我们的服务，期间同样享受软件更新和贴心售后。是短期体验的优质选择。</p>
+      <p>价格：$399</p>
+      <button onclick="addToCart(this, '季度套餐', 399)">加入购物车</button>
+    </div>
+    <div class="product">
+      <img src="product.jpg" alt="月度套餐">
+      <h3>月度套餐</h3>
+      <p>提供一个月的使用权限，在这期间，您能体验到我们的最新功能，并且有售后保障。</p>
+      <p>价格：$180</p>
+      <button onclick="addToCart(this, '月度套餐', 180)">加入购物车</button>
+    </div>
+  </main>
+  <div class="cart">
+    <h2>购物车</h2>
+    <table>
+      <tr>
+        <th>商品</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>总价</th>
+        <th>操作</th>
+      </tr>
+      <tbody id="cartItems"></tbody>
+    </table>
+    <p>总价：$<span id="totalPrice">0</span></p>
+    <button onclick="checkout()">结算</button>
+  </div>
+  <!-- 优化后的悬浮窗公告 -->
+  <div class="floating-announcement">
+    <p><span class="online-customer-service">在线客服</span> 随时为您服务！</p>
+    <p>客服在线时间：周一至周五 9:00 - 18:00</p>
+  </div>
+  <footer>
+    <p>版权所有 &copy; 2024 跑路科技团队</p>
+  </footer>
+  <script>
+    // 购物车数据存储
+    let cart = [];
+
+    function addToCart(button, productName, price) {
+      let found = cart.find(item => item.name === productName);
+      if (found) {
+        found.quantity++;
+      } else {
+        cart.push({ name: productName, quantity: 1, price: price });
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartItems = document.getElementById('cartItems');
+      cartItems.innerHTML = '';
+      let total = 0;
+      for (let item of cart) {
+        let row = document.createElement('tr');
+        let nameCell = document.createElement('td');
+        nameCell.textContent = item.name;
+        let quantityCell = document.createElement('td');
+        let minusButton = document.createElement('button');
+        minusButton.classList.add('quantity-control');
+        minusButton.textContent = '-';
+        minusButton.onclick = () => decreaseQuantity(item.name);
+        quantityCell.appendChild(minusButton);
+        let quantitySpan = document.createElement('span');
+        quantitySpan.id = `quantity-${item.name}`;
+        quantitySpan.textContent = item.quantity;
+        quantityCell.appendChild(quantitySpan);
+        let plusButton = document.createElement('button');
+        plusButton.classList.add('quantity-control');
+        plusButton.textContent = '+';
+        plusButton.onclick = () => increaseQuantity(item.name);
+        quantityCell.appendChild(plusButton);
+        let priceCell = document.createElement('td');
+        priceCell.textContent = '$' + item.price;
+        let totalCell = document.createElement('td');
+        totalCell.textContent = '$' + item.quantity * item.price;
+        let removeCell = document.createElement('td');
+        let removeButton = document.createElement('button');
+        removeButton.classList.add('remove-button');
+        removeButton.textContent = '删除';
+        removeButton.onclick = () => removeFromCart(item.name);
+        removeCell.appendChild(removeButton);
+        row.appendChild(nameCell);
+        row.appendChild(quantityCell);
+        row.appendChild(priceCell);
+        row.appendChild(totalCell);
+        row.appendChild(removeCell);
+        cartItems.appendChild(row);
+        total += item.quantity * item.price;
+      }
+      document.getElementById('totalPrice').textContent = total;
+    }
+
+    function decreaseQuantity(productName) {
+      let found = cart.find(item => item.name === productName);
+      if (found && found.quantity > 1) {
+        found.quantity--;
+        updateCart();
+      }
+    }
+
+    function increaseQuantity(productName) {
+      let found = cart.find(item => item.name === productName);
+      if (found) {
+        found.quantity++;
+        updateCart();
+      }
+    }
+
+    function removeFromCart(productName) {
+      cart = cart.filter(item => item.name!== productName);
+      updateCart();
+    }
+
+    function checkout() {
+      // 这里可以添加实际的结算逻辑，例如跳转到支付页面或显示结算详情
+      alert('即将进行结算，总价为：$' + document.getElementById('totalPrice').textContent);
+    }
+
+    function redirectToOrderQuery() {
+      window.location.href = 'order_query.html'; // 跳转到订单查询页面
+    }
+  </script>
+</body>
+
+</html>
